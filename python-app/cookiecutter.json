@@ -1,5 +1,6 @@
 {
   "project_slug": "",
+  "root_source_dir": "src",
   "virtualenv_dir": ".venv"
 }
 

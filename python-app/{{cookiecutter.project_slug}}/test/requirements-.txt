@@ -1,4 +1,4 @@
--r ../src/requirements.txt
+-r ../{{cookiecutter.root_source_dir}}/requirements.txt
 flake8
 black
 mypy
