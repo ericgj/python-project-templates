@@ -1,0 +1,11 @@
+{
+  "your_name": "",
+  "your_email": "",
+  "project_name": "",
+  "project_slug": "{{cookiecutter.project_name.lower().replace(' ','_').replace('-','_')}}",
+  "project_short_desc": "A short description of this project",
+  "repo_name": "{{cookiecutter.project_slug}}",  
+  "repo_username": "",
+  "repo_origin": "https://github.com/{{cookiecutter.repo_username}}/{{cookiecutter.repo_name}}.git",
+  "license": ["MIT","BSD-3-Clause","AGPL-3.0","GPL-3.0","None"]
+}

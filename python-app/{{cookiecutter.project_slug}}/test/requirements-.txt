@@ -1,0 +1,6 @@
+-r ../src/requirements.txt
+flake8
+black
+mypy
+pytest
+
