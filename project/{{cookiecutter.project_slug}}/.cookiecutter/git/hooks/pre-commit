@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+cached=$(git diff --name-only --cached --diff-filter=ACM | grep "\.py$")
+if [ ! -z "$cached" ]; then
+  echo "Running flake8..." >&2  && \
+  echo "$cached" | xargs flake8 && \
+  echo "Running mypy..." >&2    && \
+  mypy  && \
+  echo "Running black..." >&2   && \
+  echo "$cached" | xargs black  && \
+  git add -A >/dev/null && \
+  echo "Done." >&2
+fi
+

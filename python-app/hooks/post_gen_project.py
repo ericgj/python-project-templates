@@ -68,14 +68,19 @@ def copy_git_files(root=os.path.join('.cookiecutter','git')):
         for fname in fnames:
             rel = os.path.relpath(dir,root)
             src = os.path.join(dir,fname)
-            dest = os.path.join('.git',rel,fname)
+            dest_dir = os.path.join('.git',rel)
+            dest = os.path.join(dest_dir,fname)
             print(f"    {dest}", file=sys.stderr)
+            os.makedirs(dest_dir,exist_ok=True)
             shutil.copyfile(src, dest)
 
 
 def cleanup_temp_dir(dir='.cookiecutter'):
     shutil.rmtree(os.path.join('.',dir), ignore_errors=True)
 
+
+print("Initializing git...", file=sys.stderr)
+run(["git", "init", "."])
 
 print("Copying git files...", file=sys.stderr)
 copy_git_files()
@@ -86,7 +91,7 @@ append_files()
 venv_dir = "{{ cookiecutter.virtualenv_dir }}"
 
 print(f"Initializing virtualenv {venv_dir}...", file=sys.stderr)
-run(["virtualenv", venv_dir])
+run(["virtualenv", venv_dir, "--always-copy"])
 
 print("Installing test requirements...", file=sys.stderr)
 run_in_virtualenv(["pip", "install", "-r", os.path.join("test", "requirements-.txt")], venv_dir)

@@ -4,6 +4,8 @@
   "project_name": "",
   "project_slug": "{{cookiecutter.project_name.lower().replace(' ','_').replace('-','_')}}",
   "project_short_desc": "A short description of this project",
+  "root_source_dir": "{{cookiecutter.project_slug}}",
+  "virtualenv_dir": ".venv",
   "repo_name": "{{cookiecutter.project_slug}}",  
   "repo_username": "",
   "repo_origin": "https://github.com/{{cookiecutter.repo_username}}/{{cookiecutter.repo_name}}.git",
