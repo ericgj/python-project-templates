@@ -12,6 +12,38 @@ def run(cmd):
     except subprocess.CalledProcessError as e: 
         handle_subproc_error(e)
 
+def run_in_virtualenv(cmd, venv_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE):
+    venv_dir = os.path.realpath(venv_dir)
+    exec_path = ""
+    if os.path.exists(os.path.join(venv_dir, "bin")):
+        exec_path = os.path.join(venv_dir,"bin")
+    elif os.path.exists(os.path.join(venv_dir, "Scripts")):
+        exec_path = os.path.join(venv_dir,"Scripts")
+        """ 
+        Note: Windows doesn't respect PATH in subprocess env, need to specify
+        the full path to virtualenv exe. See https://bugs.python.org/issue8557.
+        This is a hack.
+        """
+        cmd = [ os.path.join(exec_path,cmd[0]) ] + cmd[1:]
+    else:
+        raise ValueError("Can't find virtualenv executable path")
+
+    env = os.environ.copy()
+    env['PATH'] = os.pathsep.join([exec_path, env.get('PATH','')])
+    env['VIRTUAL_ENV'] = venv_dir
+    
+    try:
+        subprocess.run(
+            cmd, 
+            check=True, 
+            stdout=stdout, 
+            stderr=stderr, 
+            env=env,
+        )
+    except subprocess.CalledProcessError as e: 
+        handle_subproc_error(e)
+
+
 def handle_subproc_error(e):
     print(f"An error occurred running `{' '.join(e.cmd)}` ({e.returncode})", file=sys.stderr)
     print(e.stderr, file=sys.stderr)
@@ -64,6 +96,9 @@ venv_dir = "{{ cookiecutter.virtualenv_dir }}"
 
 print(f"Initializing virtualenv {venv_dir}...", file=sys.stderr)
 run(["virtualenv", venv_dir, "--always-copy"])
+
+print("Installing library in development mode for testing...", file=sys.stderr)
+run_in_virtualenv(["pip", "install", "-e", "."], venv_dir)
 
 print("Cleaning up...", file=sys.stderr)
 cleanup_temp_dir()

@@ -1,6 +1,7 @@
 __pycache__/
 *.py[cod]
 *.so
+*.egg-info
 
 /{{ cookiecutter.virtualenv_dir }}
 .pytest_cache/
