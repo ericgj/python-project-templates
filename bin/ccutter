@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+tmpdir=$(mktemp -d -t cookiecutter-XXXXXXXX)
+outdir="$1"
+
+( cookiecutter -o "${tmpdir}" "${@:2}" && \
+  rsync -av --remove-source-files --ignore-existing "${tmpdir}/$(ls ${tmpdir} | head -n 1)" "${outdir}"
+)
+
+if [ -d "${tmpdir}" ]; then
+    rm -fr "{$tmpdir}"
+fi
+

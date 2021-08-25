@@ -1,0 +1,2 @@
+/{{ cookiecutter.config_dir }}
+!/{{ cookiecutter.config_dir }}/example
