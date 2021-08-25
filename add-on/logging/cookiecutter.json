@@ -1,0 +1,9 @@
+{
+  "project_slug": "",
+  "log_dir": "log",
+  "config_dir": "config",
+  "root_source_dir": "src",
+  "adapter_dir": "adapter",
+  "model_dir": "model"
+}
+
