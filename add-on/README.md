@@ -8,9 +8,11 @@ Let's say you have a project directory called foo in ~/projects. To add the
 
 ```sh
 cd ~/projects
-cookiecutter -s gh:ericgj/python-project-templates --directory add-on
+~/ccutter . gh:ericgj/python-project-templates --directory add-on/logging
 ```
 
-When prompted for `project name`, enter `foo`.
+When prompted for `project_slug`, enter `foo`.
+
+(For more info, see the top-level README.)
 
 
