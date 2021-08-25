@@ -1,6 +1,6 @@
 import os.path
 
-from {% if cookiecutter.is_library == 'y' %}..{% endif %}model.config import Config
+from model.config import Config
 
 class ConfigLoadError(BaseException):
     def __init__(self, env: str, config_name: str):
@@ -15,7 +15,9 @@ def load(env: str) -> Config:
     # TODO: replace with how you load your config from files
     """
     with open(config_file(env, 'some_config_file')) as c:
-        return Config(...)
+        return Config(
+            ...
+        )
     """
     pass
 

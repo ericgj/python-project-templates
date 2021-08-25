@@ -1,6 +1,5 @@
 {
   "project_slug": "",
-  "is_library": "n", 
   "config_dir": "config",
   "root_source_dir": "src",
   "adapter_dir": "adapter",
