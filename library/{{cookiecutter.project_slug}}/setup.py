@@ -30,7 +30,7 @@ install_requires = [
 ]
 
 tests_require = [
-    'pytest'
+    'pytest', 'pytest-random-order'
 ]
 
 
