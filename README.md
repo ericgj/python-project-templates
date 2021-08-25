@@ -31,7 +31,7 @@ _incremental_ templates that can be merged into the basic project structure
 as needed, even after you have started work.
 
 Cookiecutter is not designed to be used this way, so this repo provides a
-`ccutter` script (in `bash` only at the moment) that provide the ability to 
+`ccutter` script (in `bash` only at the moment) that provides the ability to 
 incrementally update a project from multiple templates.
 
 ### To install the ccutter script:
